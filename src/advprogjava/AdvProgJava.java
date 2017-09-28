@@ -16,6 +16,7 @@ public class AdvProgJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //Do stuff and things
     }
     
 }
