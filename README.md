@@ -1,4 +1,4 @@
 # AdvProgJava
 Repo For AdvProg: Java
 
-hw2: Branch for homework #2, problem url:
+hw2: Branch for homework #2, problem url: https://open.kattis.com/problems/cold
