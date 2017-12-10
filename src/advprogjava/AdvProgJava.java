@@ -61,14 +61,26 @@ public class AdvProgJava {
         return connection;
 }
     
+    public void closeConnnection()
+    {
+        try
+        {
+        connection.close();
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Couldn't close connnection.");
+        }
+    }
+    
     void reset() {
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            statement.executeUpdate("drop table if exists backlog");
-            statement.executeUpdate("create table backlog (Title string primary key, Genre string, Length string)");
+            //statement.executeUpdate("drop table if exists backlog");
+            statement.executeUpdate("create table if not exists backlog (Title string primary key, Genre string, Length string)");
         } catch (SQLException ex) {
             Logger.getLogger(AdvProgJava.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,7 +135,7 @@ public class AdvProgJava {
             if (tokens.length != 2)
             {
                 System.out.println("Incorrect number of arguments for Remove.");
-                return 1;
+                return 2;
             }
             
             try
@@ -144,7 +156,7 @@ public class AdvProgJava {
                 System.out.println("Something broke in Remove.");
             }
             
-            return 1;
+            return 2;
         }
         else if (tokens[0].equals("list"))
         {
@@ -164,14 +176,14 @@ public class AdvProgJava {
                 System.out.println("Something broke in List.");
             }
             
-            return 1;
+            return 3;
         }
         else if (tokens[0].equals("find"))
         {
             if (tokens.length != 3)
             {
                 System.out.println("Incorrect number of arguments for Find.");
-                return 1;
+                return 4;
             }
             
             if (sanitize(tokens[1], tokens[2]))
@@ -198,14 +210,14 @@ public class AdvProgJava {
                 System.out.println("Incorrect genre or length.");
             }
             
-            return 1;
+            return 4;
         }
         else if (tokens[0].equals("search"))
         {
             if (tokens.length != 2)
             {
                 System.out.println("Incorrect number of arguments for Search.");
-                return 1;
+                return 5;
             }
             
             try
@@ -224,7 +236,7 @@ public class AdvProgJava {
                 System.out.println("Something broke in Search.");
             }
             
-            return 1;
+            return 5;
         }
         else if (tokens[0].equals("help"))
         {
@@ -239,7 +251,7 @@ public class AdvProgJava {
             System.out.println("Valid Lengths:\n");
             System.out.println("Multiplayer, Short, Medium, Long");
             
-            return 1;
+            return 6;
         }
         else if (tokens[0].equals("exit"))
         {
@@ -249,7 +261,7 @@ public class AdvProgJava {
         {
             System.out.println("Command not found.");
             
-            return 1;
+            return 7;
         }
     }
     
@@ -417,7 +429,7 @@ public class AdvProgJava {
 //            Logger.getLogger(AdvProgJava.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         
-        System.out.println("Good to go.");
+        System.out.println("Welcome to the Gaming Backlog Manager.");
         
         
         try
